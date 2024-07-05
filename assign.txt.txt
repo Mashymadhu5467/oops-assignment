@@ -1,0 +1,144 @@
+1.ANS: In Object-Oriented Programming (OOP), a class is a blueprint or template for creating objects. It defines the attributes (properties) and methods                (functions) that the objects created from the class will have. An object is an instance of a class; it is created based on the structure defined by the          class and holds actual values for the attributes.
+
+       Class
+       A class is like a blueprint for an object. It defines the structure and behavior (data and methods) that the objects created from it will have. A class          itself does not hold any data; it is just a template.
+
+       Object
+       An object is an instance of a class. It is created from
+the class and contains real data. Each object has its own copy of the attributes defined in the          class and can use the methods defined by the class.
+
+       for example conisder an object car:
+
+
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+    
+    def display_info(self):
+        print(f"Car: {self.year} {self.make} {self.model}")
+
+car1 = Car("Toyota", "Camry", 2020)
+car2 = Car("Honda", "Civic", 2018)
+
+
+car1.display_info()  # Output: Car: 2020 Toyota Camry
+car2.display_info()  # Output: Car: 2018 Honda Civic
+
+
+2.ANS: Abstraction
+       Encapsulation
+       Inheritance
+       Polymorphism
+
+
+3.ANS: The __init__() function in Python is a special method called the constructor. It's used to initialize objects whenever a new instance is created from a          class. Here's a breakdown of its purpose and why it's important:
+
+      Object Initialization: When you create an object using a class, Python automatically calls the __init__() method behind the scenes. This method acts like        a blueprint to set up the initial state of the object.
+
+      Assigning Attributes: Inside the __init__() method, you can define attributes (variables) that will hold the object's data. These attributes are typically       assigned values using the self parameter, which refers to the current object itself.
+
+      
+      for example:
+
+      class Dog:
+         def __init__(self, breed, color):  
+             self.breed = breed
+             self.color = color
+         def bark(self):
+             print("Woof! I'm a", self.breed, "and I'm", self.color)
+
+       my_dog = Dog("Golden Retriever", "golden")
+       other_dog = Dog("Labrador", "black")
+
+       my_dog.bark()  # Output: Woof! I'm a Golden Retriever and I'm golden
+       other_dog.bark()  # Output: Woof! I'm a Labrador and I'm black
+
+4.ANS:  In Python OOPs, the self parameter is used within a class definition to refer to the current object instance. It acts like a bridge between the methods          of the class and the attributes of a specific object. Here's a breakdown of why self is essential:
+
+      Method-Object Connection: Classes define methods (functions) that operate on the data of the object. self allows methods to access and modify the                attributes of the particular object they're called on.
+
+      Uniqueness for Each Object: Without self, methods wouldn't be able to differentiate between attributes of different objects created from the same class.         self ensures each object has its own set of attributes.
+
+      Clarity and Readability: Using self explicitly clarifies that you're working with the object's attributes. It avoids confusion between local variables           within a method and the object's data.
+
+
+5.ANS: Inheritance in Python is a fundamental concept in Object-Oriented Programming (OOP) that allows you to create new classes (subclasses) based on existing         classes (superclasses). It provides a way to reuse code and establish relationships between objects. Here's a breakdown of inheritance and its different         types in Python, along with examples:
+    
+       1.Single Inheritance:
+       In single inheritance, a subclass inherits from only one parent class. This is the most common and straightforward type of inheritance
+
+       For example:
+       class Animal:
+         def __init__(self, name):
+             self.name = name
+         def eat(self):
+             print(self.name, "is eating.")
+
+       class Dog(Animal):
+           def __init__(self, name, breed):
+               super().__init__(name)  
+               self.breed = breed
+           def bark(self):
+               print(self.name, "the", self.breed, "is barking!")
+
+      my_dog = Dog("Buddy", "Labrador")
+      my_dog.eat()  # Output: Buddy is eating.
+      my_dog.bark()  # Output: Buddy the Labrador is barking!
+
+     2.Multiple Inheritance:
+
+      In multiple inheritance, a subclass inherits from multiple parent classes. This can be useful for combining functionalities from different classes, but it       can also lead to complexity if not managed carefully.
+
+      For example:
+class Fish:
+    def __init__(self, name):
+        self.name = name
+    def swim(self):
+        print(self.name, "is swimming.")
+
+class Flyer:
+    def __init__(self, name):
+        self.name = name
+    def fly(self):
+        print(self.name, "is flying.")
+
+class Parrot(Fish, Flyer):  
+    def __init__(self, name, color):
+        super().__init__(name)  
+        Flyer.__init__(self, name)  
+        self.color = color
+    def squawk(self):
+        print(self.name, "the", self.color, "parrot is squawking!")
+
+my_parrot = Parrot("Coco", "green")
+my_parrot.swim()  # Output: Coco is swimming.
+my_parrot.fly()  # Output: Coco is flying.
+my_parrot.squawk()  # Output: Coco the green parrot is squawking!
+
+    3.Multilevel Inheritence:
+     In multilevel inheritance, a subclass inherits from another subclass, which in turn inherits from another parent class, forming a chain of inheritance.
+
+    for example:
+class Vehicle:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+    def move(self):
+        print(self.make, self.model, "is moving.")
+
+class Car(Vehicle):
+    def __init__(self, make, model, wheels):
+        super().__init__(make, model)  
+        self.wheels = wheels
+
+class Tesla(Car):  
+    def __init__(self, make, model, wheels, autopilot):
+        super().__init__(make, model, wheels)  
+        self.autopilot = autopilot
+    def self_drive(self):
+        print(self.make, self.model, "is self-driving with autopilot!")
+
+my_tesla = Tesla("Tesla", "Model S", 4, True)
+my_tesla.move()  
